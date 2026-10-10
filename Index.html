@@ -8,158 +8,130 @@
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: #0a0e14;
-    color: #eaf2f8;
-    min-height: 100vh;
-    padding: 14px;
-    padding-bottom: 40px;
-    overflow-x: hidden;
+    background: #0a0e14; color: #eaf2f8;
+    min-height: 100vh; padding: 14px; padding-bottom: 40px; overflow-x: hidden;
   }
   .hidden { display: none !important; }
-
-  /* ---------- SHARED ---------- */
-  .card {
-    background: #141b26;
-    border: 1px solid #1f2a38;
-    border-radius: 16px;
-    padding: 14px;
-    margin-bottom: 10px;
-  }
+  .card { background: #141b26; border: 1px solid #1f2a38; border-radius: 16px; padding: 14px; margin-bottom: 10px; }
   .btn {
-    display: block;
-    width: 100%;
-    padding: 15px;
-    border: none;
-    border-radius: 12px;
-    font-size: 15px;
-    font-weight: 700;
-    cursor: pointer;
-    color: #fff;
-    font-family: inherit;
-    margin-bottom: 8px;
+    display: block; width: 100%; padding: 15px; border: none; border-radius: 12px;
+    font-size: 15px; font-weight: 700; cursor: pointer; color: #fff; font-family: inherit; margin-bottom: 8px;
   }
   .btn-green { background: #16a34a; }
-  .btn-blue  { background: #2563eb; }
-  .btn-dark  { background: #1f2a38; }
+  .btn-blue { background: #2563eb; }
+  .btn-dark { background: #1f2a38; }
   .btn:active { opacity: .8; }
+  .btn:disabled { opacity: .35; cursor: not-allowed; }
 
-  /* ---------- ROLE SCREEN ---------- */
-  .center { text-align: center; padding-top: 30px; }
+  .center { text-align: center; padding-top: 20px; }
   .logo { font-size: 40px; margin-bottom: 6px; }
-  h1 { font-size: 26px; font-weight: 800; letter-spacing: -.5px; }
-  .tag { color: #6b7d90; font-size: 13px; margin: 6px 0 28px; }
+  h1 { font-size: 24px; font-weight: 800; letter-spacing: -.5px; }
+  .tag { color: #6b7d90; font-size: 13px; margin: 6px 0 24px; }
+
   .role-btn {
-    display: block; width: 100%; padding: 20px;
-    border-radius: 16px; border: 2px solid #1f2a38;
-    font-size: 17px; font-weight: 800; margin-bottom: 12px;
-    cursor: pointer; text-align: left; color: #fff;
-    font-family: inherit;
+    display: block; width: 100%; padding: 20px; border-radius: 16px; border: 2px solid #1f2a38;
+    font-size: 17px; font-weight: 800; margin-bottom: 12px; cursor: pointer; text-align: left;
+    color: #fff; font-family: inherit;
   }
   .role-btn:active { transform: scale(.98); }
   .role-btn small { display: block; font-weight: 400; font-size: 12px; opacity: .8; margin-top: 5px; line-height: 1.4; }
   .nepo { background: linear-gradient(135deg, #1e3a8a, #1e40af); border-color: #2563eb; }
   .lapo { background: linear-gradient(135deg, #166534, #15803d); border-color: #16a34a; }
 
-  /* ---------- HUD ---------- */
-  .hud-top {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 10px;
+  .wish-btn {
+    display: block; width: 100%; padding: 16px; border-radius: 14px; border: 1px solid #1f2a38;
+    background: #141b26; font-size: 15px; font-weight: 700; margin-bottom: 9px; cursor: pointer;
+    text-align: left; color: #eaf2f8; font-family: inherit;
   }
+  .wish-btn:active { background: #1f2a38; }
+  .wish-btn small { display: block; font-weight: 400; font-size: 11px; color: #6b7d90; margin-top: 4px; }
+
+  .age-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 20px; }
+  .age-cell {
+    background: #141b26; border: 1px solid #1f2a38; border-radius: 12px;
+    padding: 14px 4px; text-align: center; font-size: 15px; font-weight: 700;
+    cursor: pointer; color: #eaf2f8; font-family: inherit;
+  }
+  .age-cell:active { background: #16a34a; }
+  .age-cell.selected { background: #16a34a; border-color: #22c55e; }
+
+  .hud-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
   .clock { font-size: 22px; font-weight: 800; color: #4ade80; letter-spacing: -.5px; }
   .date { font-size: 11px; color: #6b7d90; margin-top: 2px; }
-  .online {
-    font-size: 10px; background: #166534; color: #4ade80;
-    padding: 4px 10px; border-radius: 99px; font-weight: 700;
-  }
+  .badge { font-size: 10px; padding: 4px 10px; border-radius: 99px; font-weight: 700; }
 
   .money-row { display: flex; gap: 8px; margin-bottom: 10px; }
-  .money-box {
-    flex: 1; background: #141b26; border: 1px solid #1f2a38;
-    border-radius: 14px; padding: 11px;
-  }
+  .money-box { flex: 1; background: #141b26; border: 1px solid #1f2a38; border-radius: 14px; padding: 11px; }
   .money-box span { display: block; font-size: 10px; color: #6b7d90; margin-bottom: 4px; letter-spacing: .3px; }
   .money-box b { font-size: 15px; font-weight: 800; }
   .wallet b { color: #fbbf24; }
   .bank b { color: #4ade80; }
 
-  .section-title {
-    font-size: 11px; color: #6b7d90; letter-spacing: 1px;
-    font-weight: 700; margin-bottom: 10px;
-  }
+  .section-title { font-size: 11px; color: #6b7d90; letter-spacing: 1px; font-weight: 700; margin-bottom: 10px; }
 
-  /* ---------- NEEDS ---------- */
   .bar-row { margin-bottom: 11px; }
-  .bar-label {
-    display: flex; justify-content: space-between;
-    font-size: 11px; margin-bottom: 5px; color: #b8c7d4; font-weight: 600;
-  }
+  .bar-label { display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 5px; color: #b8c7d4; font-weight: 600; }
   .bar-bg { height: 8px; background: #0a0e14; border-radius: 99px; overflow: hidden; }
   .bar-fill { height: 100%; border-radius: 99px; transition: width .5s linear; }
 
-  /* ---------- WISH SCREEN ---------- */
-  .wish-btn {
-    display: block; width: 100%; padding: 16px;
-    border-radius: 14px; border: 1px solid #1f2a38;
-    background: #141b26; font-size: 15px; font-weight: 700;
-    margin-bottom: 9px; cursor: pointer; text-align: left;
-    color: #eaf2f8; font-family: inherit;
+  .job-card {
+    background: #141b26; border: 1px solid #1f2a38; border-radius: 14px;
+    padding: 14px; margin-bottom: 9px;
   }
-  .wish-btn:active { background: #1f2a38; }
-  .wish-btn small { display: block; font-weight: 400; font-size: 11px; color: #6b7d90; margin-top: 4px; }
+  .job-card.current { border-color: #16a34a; background: #0f2018; }
+  .job-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .job-name { font-size: 15px; font-weight: 700; }
+  .job-pay { font-size: 14px; font-weight: 800; color: #4ade80; }
+  .job-meta { font-size: 11px; color: #6b7d90; line-height: 1.5; }
+  .job-action {
+    display: inline-block; margin-top: 10px; padding: 9px 18px; border-radius: 10px;
+    border: none; font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit;
+    background: #2563eb; color: #fff;
+  }
+  .job-action.work { background: #16a34a; }
+  .job-action:disabled { opacity: .35; cursor: not-allowed; }
+  .locked { opacity: .45; }
 
-  /* ---------- BOTTOM NAV ---------- */
   .nav {
-    position: fixed; bottom: 0; left: 0; right: 0;
-    background: #141b26; border-top: 1px solid #1f2a38;
-    display: flex; padding: 8px 0 12px;
+    position: fixed; bottom: 0; left: 0; right: 0; background: #141b26;
+    border-top: 1px solid #1f2a38; display: flex; padding: 8px 0 12px; z-index: 40;
   }
-  .nav-item {
-    flex: 1; text-align: center; font-size: 10px;
-    color: #6b7d90; cursor: pointer; padding: 4px;
-  }
+  .nav-item { flex: 1; text-align: center; font-size: 10px; color: #6b7d90; cursor: pointer; padding: 4px; }
   .nav-item.active { color: #4ade80; font-weight: 700; }
   .nav-item .ico { font-size: 20px; display: block; margin-bottom: 3px; }
 
-  /* ---------- MODAL ---------- */
-  .overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,.7);
-    display: flex; align-items: flex-end; z-index: 50;
-  }
+  .overlay { position: fixed; inset: 0; background: rgba(0,0,0,.7); display: flex; align-items: flex-end; z-index: 50; }
   .sheet {
-    background: #141b26; width: 100%;
-    border-radius: 22px 22px 0 0; padding: 20px;
-    border-top: 1px solid #1f2a38;
-    max-height: 80vh; overflow-y: auto;
+    background: #141b26; width: 100%; border-radius: 22px 22px 0 0; padding: 20px;
+    border-top: 1px solid #1f2a38; max-height: 80vh; overflow-y: auto;
   }
   .sheet h2 { font-size: 19px; margin-bottom: 4px; }
   .sheet .sub { font-size: 12px; color: #6b7d90; margin-bottom: 18px; }
   .input {
-    width: 100%; padding: 13px; background: #0a0e14;
-    border: 1px solid #1f2a38; border-radius: 12px;
-    color: #eaf2f8; font-size: 16px; font-family: inherit;
-    margin-bottom: 10px;
+    width: 100%; padding: 13px; background: #0a0e14; border: 1px solid #1f2a38;
+    border-radius: 12px; color: #eaf2f8; font-size: 16px; font-family: inherit; margin-bottom: 10px;
   }
   .row2 { display: flex; gap: 8px; }
+  .info-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #1f2a38; font-size: 13px; }
+  .info-row:last-child { border-bottom: none; }
+  .info-row span { color: #6b7d90; }
 
-  /* ---------- TOAST ---------- */
   .toast {
     position: fixed; top: 14px; left: 50%; transform: translateX(-50%) translateY(-100px);
-    background: #1f2a38; border: 1px solid #2d3f52;
-    padding: 11px 18px; border-radius: 99px; font-size: 13px;
-    transition: transform .35s; z-index: 100; white-space: nowrap;
-    max-width: 90vw; overflow: hidden; text-overflow: ellipsis;
+    background: #1f2a38; border: 1px solid #2d3f52; padding: 11px 18px; border-radius: 99px;
+    font-size: 13px; transition: transform .35s; z-index: 100; max-width: 90vw;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
   }
   .toast.show { transform: translateX(-50%) translateY(0); }
 </style>
 </head>
 <body>
 
-<!-- ========== ROLE SELECT ========== -->
+<!-- ========== ROLE ========== -->
 <div id="screen-role" class="center">
   <div class="logo">🇳🇬</div>
   <h1>NAIJA HUSTLE</h1>
   <div class="tag">From ₦5,000 to everything.</div>
-
   <button class="role-btn nepo" onclick="pickRole('nepo')">
     👑 NEPO
     <small>Born rich. ₦15,000,000 and a company to manage. Don't blow it — or you fall.</small>
@@ -170,12 +142,11 @@
   </button>
 </div>
 
-<!-- ========== WISH SELECT ========== -->
+<!-- ========== WISH ========== -->
 <div id="screen-wish" class="center hidden">
   <div class="logo">✨</div>
   <h1>Make Your Wish</h1>
-  <div class="tag">Choose what you're hustling for. Complete it → earn ₦20,000,000.</div>
-
+  <div class="tag">Complete it → earn ₦20,000,000 and become Nepo.</div>
   <button class="wish-btn" onclick="pickWish('billionaire')">
     💰 Become a Billionaire
     <small>Bank balance reaches ₦1,000,000,000</small>
@@ -194,56 +165,75 @@
   </button>
 </div>
 
-<!-- ========== MAIN GAME ========== -->
-<div id="screen-game" class="hidden">
-
-  <div class="hud-top">
-    <div>
-      <div class="clock" id="clock">--:--</div>
-      <div class="date" id="date">Loading…</div>
-    </div>
-    <div class="online" id="roleBadge">—</div>
-  </div>
-
-  <div class="money-row">
-    <div class="money-box wallet">
-      <span>WALLET · LOSABLE</span>
-      <b id="wallet">₦0</b>
-    </div>
-    <div class="money-box bank">
-      <span>BANK · SAFE</span>
-      <b id="bank">₦0</b>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="section-title">NEEDS</div>
-    <div id="bars"></div>
-  </div>
-
-  <div class="card">
-    <div class="section-title">YOUR HUSTLE</div>
-    <div id="goalInfo" style="font-size:13px;line-height:1.6;color:#b8c7d4;"></div>
-  </div>
-
-  <div style="height: 70px"></div>
+<!-- ========== AGE ========== -->
+<div id="screen-age" class="center hidden">
+  <div class="logo">🎂</div>
+  <h1>How Old Are You?</h1>
+  <div class="tag">Age affects what work you can do — and how long you last.</div>
+  <div class="age-grid" id="ageGrid"></div>
+  <div id="ageNote" style="font-size:12px;color:#6b7d90;line-height:1.6;margin-bottom:20px;min-height:38px;"></div>
+  <button class="btn btn-green" id="ageBtn" onclick="confirmAge()" disabled>Start Hustling</button>
 </div>
 
-<!-- ========== BOTTOM NAV ========== -->
+<!-- ========== GAME ========== -->
+<div id="screen-game" class="hidden">
+
+  <!-- HOME VIEW -->
+  <div id="view-home">
+    <div class="hud-top">
+      <div>
+        <div class="clock" id="clock">--:--</div>
+        <div class="date" id="date">Loading…</div>
+      </div>
+      <div class="badge" id="roleBadge">—</div>
+    </div>
+
+    <div class="money-row">
+      <div class="money-box wallet"><span>WALLET · LOSABLE</span><b id="wallet">₦0</b></div>
+      <div class="money-box bank"><span>BANK · SAFE</span><b id="bank">₦0</b></div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">NEEDS</div>
+      <div id="bars"></div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">YOUR HUSTLE</div>
+      <div id="goalInfo" style="font-size:13px;line-height:1.7;color:#b8c7d4;"></div>
+    </div>
+
+    <div style="height: 70px"></div>
+  </div>
+
+  <!-- JOBS VIEW -->
+  <div id="view-jobs" class="hidden">
+    <div class="hud-top">
+      <div>
+        <div class="clock" style="font-size:18px">💼 JOBS</div>
+        <div class="date" id="jobsSub">Find work. Earn hourly.</div>
+      </div>
+      <div class="badge" id="jobsBadge">—</div>
+    </div>
+    <div id="jobsList"></div>
+    <div style="height: 70px"></div>
+  </div>
+
+</div>
+
+<!-- ========== NAV ========== -->
 <div class="nav hidden" id="nav">
-  <div class="nav-item active"><span class="ico">🏠</span>Home</div>
+  <div class="nav-item active" data-view="home" onclick="switchView('home')"><span class="ico">🏠</span>Home</div>
+  <div class="nav-item" data-view="jobs" onclick="switchView('jobs')"><span class="ico">💼</span>Jobs</div>
   <div class="nav-item" onclick="openBank()"><span class="ico">🏦</span>Bank</div>
-  <div class="nav-item" onclick="toast('Coming in Phase 1')"><span class="ico">🗺️</span>Map</div>
   <div class="nav-item" onclick="toast('Coming in Phase 1')"><span class="ico">📱</span>Phone</div>
 </div>
 
-<!-- ========== TOAST ========== -->
 <div id="toast" class="toast"></div>
 
 <script>
 /* ============================================================
-   NAIJA HUSTLE — PHASE 0
-   Core loop: real clock · needs decay · roles · wishes · bank
+   NAIJA HUSTLE — FILE 2: JOBS SYSTEM
    ============================================================ */
 
 const SAVE_KEY = "naijahustle_save_v1";
@@ -261,9 +251,30 @@ const WISH_LABELS = {
   family:"Lift Your Family"
 };
 
+/* ---------- JOBS DATA ---------- */
+const JOBS = [
+  { id:"vendor",   name:"Street Vendor",     emoji:"🍢", pay:800,   energy:8,  minAge:16, tier:1 },
+  { id:"cleaner",  name:"Office Cleaner",    emoji:"🧹", pay:1000,  energy:10, minAge:18, tier:1 },
+  { id:"okada",    name:"Okada Rider",       emoji:"🏍️", pay:1200,  energy:12, minAge:18, tier:1 },
+  { id:"security", name:"Security Guard",    emoji:"🛡️", pay:1500,  energy:10, minAge:18, tier:1 },
+  { id:"waiter",   name:"Restaurant Waiter", emoji:"🍽️", pay:1800,  energy:12, minAge:18, tier:2 },
+  { id:"delivery", name:"Delivery Rider",    emoji:"📦", pay:2200,  energy:14, minAge:18, tier:2 },
+  { id:"shop",     name:"Shop Attendant",    emoji:"🏪", pay:2500,  energy:12, minAge:18, tier:2 },
+  { id:"teacher",  name:"Teacher",           emoji:"📚", pay:4000,  energy:16, minAge:22, tier:3 },
+  { id:"bank",     name:"Bank Teller",       emoji:"🏦", pay:5000,  energy:18, minAge:22, tier:3 },
+  { id:"engineer", name:"Engineer",          emoji:"⚙️", pay:8000,  energy:20, minAge:25, tier:4 },
+  { id:"manager",  name:"Manager",           emoji:"💼", pay:12000, energy:22, minAge:28, tier:4 }
+];
+
+const TIER_LABEL = { 1:"Entry level", 2:"Semi-skilled", 3:"Professional", 4:"Senior" };
+
 let state = null;
 let lastTick = Date.now();
 let faintLock = false;
+let currentView = "home";
+let pendingRole = null;
+let pendingWish = null;
+let pendingAge = null;
 
 /* ---------- STORAGE ---------- */
 function save() {
@@ -276,28 +287,70 @@ function loadSave() {
   } catch(e) { return null; }
 }
 
-/* ---------- START ---------- */
+/* ---------- START FLOW ---------- */
 function pickRole(role) {
+  pendingRole = role;
   if (role === "lapo") {
-    // Lapo picks a wish before entering
     show("screen-wish");
-    window._pendingRole = "lapo";
   } else {
-    createGame("nepo", null);
+    show("screen-age");
+    buildAgeGrid();
   }
 }
 
 function pickWish(wish) {
-  createGame("lapo", wish);
+  pendingWish = wish;
+  show("screen-age");
+  buildAgeGrid();
 }
 
-function createGame(role, wish) {
+const AGE_OPTIONS = [16, 18, 22, 25, 30, 35, 40, 45, 50, 55, 60, 70];
+
+function buildAgeGrid() {
+  const grid = document.getElementById("ageGrid");
+  grid.innerHTML = "";
+  AGE_OPTIONS.forEach(a => {
+    const div = document.createElement("div");
+    div.className = "age-cell";
+    div.textContent = a;
+    div.onclick = () => selectAge(a, div);
+    grid.appendChild(div);
+  });
+  pendingAge = null;
+  document.getElementById("ageBtn").disabled = true;
+  document.getElementById("ageNote").textContent = "Tap an age above.";
+}
+
+function selectAge(age, el) {
+  pendingAge = age;
+  document.querySelectorAll(".age-cell").forEach(c => c.classList.remove("selected"));
+  el.classList.add("selected");
+
+  let note = "";
+  if (age < 18) note = "🧒 Minor — lives with parents. Limited to small tasks.";
+  else if (age < 50) note = "💪 Full working capacity.";
+  else if (age < 60) note = "⚠️ Reduced stamina. Work drains energy faster.";
+  else note = "🦴 Heavy stamina penalty. Work is hard on you.";
+
+  document.getElementById("ageNote").textContent = note;
+  document.getElementById("ageBtn").disabled = false;
+}
+
+function confirmAge() {
+  if (!pendingAge) return;
+  createGame(pendingRole, pendingWish, pendingAge);
+}
+
+function createGame(role, wish, age) {
   state = {
     role,
-    wish: wish,                             // null for Nepo
+    wish: wish,
+    age: age,
     wallet: role === "nepo" ? 15000000 : 5000,
     bank: 0,
     needs: { hunger:100, energy:100, fun:100, social:100, hygiene:100, bladder:100 },
+    job: null,
+    shiftsWorked: 0,
     createdAt: Date.now()
   };
   save();
@@ -306,7 +359,7 @@ function createGame(role, wish) {
 
 /* ---------- SCREENS ---------- */
 function show(id) {
-  ["screen-role","screen-wish","screen-game"].forEach(s => {
+  ["screen-role","screen-wish","screen-age","screen-game"].forEach(s => {
     document.getElementById(s).classList.add("hidden");
   });
   document.getElementById(id).classList.remove("hidden");
@@ -315,8 +368,19 @@ function show(id) {
 
 function enterGame() {
   show("screen-game");
+  switchView("home");
   lastTick = Date.now();
   renderAll();
+}
+
+function switchView(v) {
+  currentView = v;
+  document.getElementById("view-home").classList.toggle("hidden", v !== "home");
+  document.getElementById("view-jobs").classList.toggle("hidden", v !== "jobs");
+  document.querySelectorAll(".nav-item").forEach(n => {
+    n.classList.toggle("active", n.dataset.view === v);
+  });
+  if (v === "jobs") renderJobs();
 }
 
 /* ---------- CLOCK ---------- */
@@ -335,9 +399,7 @@ function tick() {
   const now = Date.now();
   let dt = (now - lastTick) / 1000;
   lastTick = now;
-
-  // cap offline decay so returning players aren't destroyed (Phase 0 safety)
-  if (dt > 60) dt = 60;
+  if (dt > 60) dt = 60;   // cap offline decay
 
   for (const n of NEEDS) {
     state.needs[n] = Math.max(0, state.needs[n] - DECAY[n] * dt);
@@ -354,15 +416,67 @@ function tick() {
 function faint() {
   if (faintLock) return;
   faintLock = true;
-
   const lost = Math.floor(state.wallet * 0.1);
   state.wallet -= lost;
   state.needs.energy = 35;
-  state.needs.health = 100;
-
   toast(`😵 You fainted! Lost ₦${lost.toLocaleString()} to pickpockets.`);
-
   setTimeout(() => { faintLock = false; }, 4000);
+}
+
+/* ---------- STAMINA ---------- */
+function staminaMultiplier(age) {
+  if (age < 50) return 1;
+  return Math.min(2.5, 1 + (age - 49) * 0.05);
+}
+
+/* ---------- JOB ACTIONS ---------- */
+function applyJob(jobId) {
+  const job = JOBS.find(j => j.id === jobId);
+  if (!job) return;
+
+  if (state.age < 18) return toast("You're a minor — can't take this job.");
+  if (state.age < job.minAge) return toast(`You must be ${job.minAge}+ for this job.`);
+
+  state.job = job.id;
+  save();
+  renderJobs();
+  renderGoal();
+  toast(`Hired: ${job.name}`);
+}
+
+function quitJob() {
+  state.job = null;
+  save();
+  renderJobs();
+  renderGoal();
+  toast("You quit your job.");
+}
+
+function workShift() {
+  if (!state.job) return toast("Get a job first.");
+  const job = JOBS.find(j => j.id === state.job);
+  if (!job) return;
+
+  const cost = Math.round(job.energy * staminaMultiplier(state.age));
+
+  if (state.needs.energy < cost + 5) {
+    return toast("Too tired to work. Rest or eat first.");
+  }
+  if (state.needs.hunger < 10) {
+    return toast("Too hungry to work.");
+  }
+
+  state.needs.energy = Math.max(0, state.needs.energy - cost);
+  state.needs.hunger = Math.max(0, state.needs.hunger - 5);
+  state.needs.hygiene = Math.max(0, state.needs.hygiene - 3);
+  state.wallet += job.pay;
+  state.shiftsWorked++;
+
+  save();
+  renderMoney();
+  renderBars();
+  renderJobs();
+  toast(`+₦${job.pay.toLocaleString()} · −${cost} energy`);
 }
 
 /* ---------- RENDER ---------- */
@@ -376,7 +490,7 @@ function renderAll() {
 
 function renderMoney() {
   document.getElementById("wallet").textContent = "₦" + Math.floor(state.wallet).toLocaleString();
-  document.getElementById("bank").textContent   = "₦" + Math.floor(state.bank).toLocaleString();
+  document.getElementById("bank").textContent = "₦" + Math.floor(state.bank).toLocaleString();
 }
 
 function renderBars() {
@@ -394,28 +508,78 @@ function renderBars() {
 
 function renderRole() {
   const b = document.getElementById("roleBadge");
-  if (state.role === "nepo") {
-    b.textContent = "👑 NEPO";
-    b.style.background = "#1e3a8a";
-    b.style.color = "#93c5fd";
-  } else {
-    b.textContent = "🏃 LAPO";
-    b.style.background = "#166534";
-    b.style.color = "#4ade80";
-  }
+  const jb = document.getElementById("jobsBadge");
+  const label = state.role === "nepo" ? "👑 NEPO" : "🏃 LAPO";
+  [b, jb].forEach(el => {
+    if (!el) return;
+    el.textContent = label;
+    el.style.background = state.role === "nepo" ? "#1e3a8a" : "#166534";
+    el.style.color = state.role === "nepo" ? "#93c5fd" : "#4ade80";
+  });
 }
 
 function renderGoal() {
   const el = document.getElementById("goalInfo");
+  const job = state.job ? JOBS.find(j => j.id === state.job) : null;
+  const jobLine = job
+    ? `💼 <b>Job:</b> ${job.emoji} ${job.name} — ₦${job.pay.toLocaleString()}/shift`
+    : `💼 <b>Job:</b> None. Open the Jobs tab.`;
+
   if (state.role === "nepo") {
-    el.innerHTML = `👑 <b>Manage your company.</b><br>
-      Fall to Lapo if you mismanage it and burn your savings.<br>
-      <span style="color:#6b7d90">Company systems arrive in Phase 1.</span>`;
+    el.innerHTML = `${jobLine}<br>
+      👑 <b>Manage your company.</b> Fall to Lapo if you mismanage it.<br>
+      <span style="color:#6b7d90">Age: ${state.age} · Company systems arrive in Phase 1.</span>`;
   } else {
-    el.innerHTML = `✨ <b>Wish:</b> ${WISH_LABELS[state.wish] || "—"}<br>
-      Complete it → earn ₦20,000,000 and become Nepo.<br>
-      <span style="color:#6b7d90">Wish tracking arrives in Phase 1.</span>`;
+    el.innerHTML = `${jobLine}<br>
+      ✨ <b>Wish:</b> ${WISH_LABELS[state.wish] || "—"}<br>
+      <span style="color:#6b7d90">Age: ${state.age} · Complete it → ₦20,000,000 + Nepo.</span>`;
   }
+}
+
+function renderJobs() {
+  if (!state) return;
+  const list = document.getElementById("jobsList");
+  const sub = document.getElementById("jobsSub");
+  const mult = staminaMultiplier(state.age);
+  sub.textContent = `Age ${state.age} · stamina ×${mult.toFixed(2)}`;
+
+  list.innerHTML = "";
+
+  if (state.age < 18) {
+    list.innerHTML = `<div class="card" style="text-align:center;color:#6b7d90;font-size:13px">
+      🧒 You're a minor. Jobs unlock at 18.<br>Small tasks arrive in a later update.
+    </div>`;
+    return;
+  }
+
+  JOBS.forEach(job => {
+    const locked = state.age < job.minAge;
+    const isCurrent = state.job === job.id;
+    const cost = Math.round(job.energy * mult);
+    const canWork = isCurrent && state.needs.energy >= cost + 5 && state.needs.hunger >= 10;
+
+    const card = document.createElement("div");
+    card.className = "job-card" + (isCurrent ? " current" : "") + (locked ? " locked" : "");
+    card.innerHTML = `
+      <div class="job-head">
+        <div class="job-name">${job.emoji} ${job.name}</div>
+        <div class="job-pay">₦${job.pay.toLocaleString()}</div>
+      </div>
+      <div class="job-meta">
+        ${TIER_LABEL[job.tier]} · −${cost} energy/shift
+        ${locked ? `<br><span style="color:#f87171">🔒 Requires age ${job.minAge}+</span>` : ""}
+      </div>
+      ${isCurrent
+        ? `<button class="job-action work" onclick="workShift()" ${canWork ? "" : "disabled"}>
+             ${canWork ? "Work Shift" : "Too tired"}
+           </button>
+           <button class="job-action" style="background:#1f2a38;margin-left:8px" onclick="quitJob()">Quit</button>`
+        : locked
+          ? ""
+          : `<button class="job-action" onclick="applyJob('${job.id}')">Get Hired</button>`}
+    `;
+    list.appendChild(card);
+  });
 }
 
 /* ---------- BANK ---------- */
@@ -426,15 +590,10 @@ function openBank() {
   overlay.innerHTML = `
     <div class="sheet">
       <h2>🏦 Bank</h2>
-      <div class="sub">Money in the bank is safe from fainting. Money in your wallet is not.</div>
-      <div class="input" style="display:flex;justify-content:space-between;background:#0a0e14">
-        <span style="color:#6b7d90;font-size:12px">WALLET</span>
-        <b style="color:#fbbf24">₦${Math.floor(state.wallet).toLocaleString()}</b>
-      </div>
-      <div class="input" style="display:flex;justify-content:space-between;background:#0a0e14">
-        <span style="color:#6b7d90;font-size:12px">BANK</span>
-        <b style="color:#4ade80">₦${Math.floor(state.bank).toLocaleString()}</b>
-      </div>
+      <div class="sub">Bank money is safe from fainting. Wallet money is not.</div>
+      <div class="info-row"><span>WALLET</span><b style="color:#fbbf24">₦${Math.floor(state.wallet).toLocaleString()}</b></div>
+      <div class="info-row"><span>BANK</span><b style="color:#4ade80">₦${Math.floor(state.bank).toLocaleString()}</b></div>
+      <div style="height:14px"></div>
       <input class="input" id="bankAmt" type="number" inputmode="numeric" placeholder="Amount in ₦">
       <div class="row2">
         <button class="btn btn-green" onclick="bankDo('deposit')">Deposit</button>
@@ -452,25 +611,19 @@ function closeBank() {
 }
 
 function bankDo(type) {
-  const amtEl = document.getElementById("bankAmt");
-  const amt = Math.floor(Number(amtEl.value));
+  const amt = Math.floor(Number(document.getElementById("bankAmt").value));
   if (!amt || amt <= 0) return toast("Enter an amount");
 
   if (type === "deposit") {
     if (amt > state.wallet) return toast("Not enough in wallet");
-    state.wallet -= amt;
-    state.bank += amt;
+    state.wallet -= amt; state.bank += amt;
     toast(`Deposited ₦${amt.toLocaleString()}`);
   } else {
     if (amt > state.bank) return toast("Not enough in bank");
-    state.bank -= amt;
-    state.wallet += amt;
+    state.bank -= amt; state.wallet += amt;
     toast(`Withdrew ₦${amt.toLocaleString()}`);
   }
-
-  save();
-  renderMoney();
-  closeBank();
+  save(); renderMoney(); closeBank();
 }
 
 /* ---------- TOAST ---------- */
@@ -486,7 +639,7 @@ function toast(msg) {
 /* ---------- BOOT ---------- */
 (function boot() {
   const existing = loadSave();
-  if (existing && existing.role) {
+  if (existing && existing.role && existing.age) {
     state = existing;
     enterGame();
   } else {
@@ -498,4 +651,4 @@ function toast(msg) {
 })();
 </script>
 </body>
-  </html>
+ </html>
