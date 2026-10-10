@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Naija Hustle</title>
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #0a0e14;
+    color: #eaf2f8;
+    min-height: 100vh;
+    padding: 14px;
+    padding-bottom: 40px;
+    overflow-x: hidden;
+  }
+  .hidden { display: none !important; }
+
+  /* ---------- SHARED ---------- */
+  .card {
+    background: #141b26;
+    border: 1px solid #1f2a38;
+    border-radius: 16px;
+    padding: 14px;
+    margin-bottom: 10px;
+  }
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #fff;
+    font-family: inherit;
+    margin-bottom: 8px;
+  }
+  .btn-green { background: #16a34a; }
+  .btn-blue  { background: #2563eb; }
+  .btn-dark  { background: #1f2a38; }
+  .btn:active { opacity: .8; }
+
+  /* ---------- ROLE SCREEN ---------- */
+  .center { text-align: center; padding-top: 30px; }
+  .logo { font-size: 40px; margin-bottom: 6px; }
+  h1 { font-size: 26px; font-weight: 800; letter-spacing: -.5px; }
+  .tag { color: #6b7d90; font-size: 13px; margin: 6px 0 28px; }
+  .role-btn {
+    display: block; width: 100%; padding: 20px;
+    border-radius: 16px; border: 2px solid #1f2a38;
+    font-size: 17px; font-weight: 800; margin-bottom: 12px;
+    cursor: pointer; text-align: left; color: #fff;
+    font-family: inherit;
+  }
+  .role-btn:active { transform: scale(.98); }
+  .role-btn small { display: block; font-weight: 400; font-size: 12px; opacity: .8; margin-top: 5px; line-height: 1.4; }
+  .nepo { background: linear-gradient(135deg, #1e3a8a, #1e40af); border-color: #2563eb; }
+  .lapo { background: linear-gradient(135deg, #166534, #15803d); border-color: #16a34a; }
+
+  /* ---------- HUD ---------- */
+  .hud-top {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 10px;
+  }
+  .clock { font-size: 22px; font-weight: 800; color: #4ade80; letter-spacing: -.5px; }
+  .date { font-size: 11px; color: #6b7d90; margin-top: 2px; }
+  .online {
+    font-size: 10px; background: #166534; color: #4ade80;
+    padding: 4px 10px; border-radius: 99px; font-weight: 700;
+  }
+
+  .money-row { display: flex; gap: 8px; margin-bottom: 10px; }
+  .money-box {
+    flex: 1; background: #141b26; border: 1px solid #1f2a38;
+    border-radius: 14px; padding: 11px;
+  }
+  .money-box span { display: block; font-size: 10px; color: #6b7d90; margin-bottom: 4px; letter-spacing: .3px; }
+  .money-box b { font-size: 15px; font-weight: 800; }
+  .wallet b { color: #fbbf24; }
+  .bank b { color: #4ade80; }
+
+  .section-title {
+    font-size: 11px; color: #6b7d90; letter-spacing: 1px;
+    font-weight: 700; margin-bottom: 10px;
+  }
+
+  /* ---------- NEEDS ---------- */
+  .bar-row { margin-bottom: 11px; }
+  .bar-label {
+    display: flex; justify-content: space-between;
+    font-size: 11px; margin-bottom: 5px; color: #b8c7d4; font-weight: 600;
+  }
+  .bar-bg { height: 8px; background: #0a0e14; border-radius: 99px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 99px; transition: width .5s linear; }
+
+  /* ---------- WISH SCREEN ---------- */
+  .wish-btn {
+    display: block; width: 100%; padding: 16px;
+    border-radius: 14px; border: 1px solid #1f2a38;
+    background: #141b26; font-size: 15px; font-weight: 700;
+    margin-bottom: 9px; cursor: pointer; text-align: left;
+    color: #eaf2f8; font-family: inherit;
+  }
+  .wish-btn:active { background: #1f2a38; }
+  .wish-btn small { display: block; font-weight: 400; font-size: 11px; color: #6b7d90; margin-top: 4px; }
+
+  /* ---------- BOTTOM NAV ---------- */
+  .nav {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: #141b26; border-top: 1px solid #1f2a38;
+    display: flex; padding: 8px 0 12px;
+  }
+  .nav-item {
+    flex: 1; text-align: center; font-size: 10px;
+    color: #6b7d90; cursor: pointer; padding: 4px;
+  }
+  .nav-item.active { color: #4ade80; font-weight: 700; }
+  .nav-item .ico { font-size: 20px; display: block; margin-bottom: 3px; }
+
+  /* ---------- MODAL ---------- */
+  .overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,.7);
+    display: flex; align-items: flex-end; z-index: 50;
+  }
+  .sheet {
+    background: #141b26; width: 100%;
+    border-radius: 22px 22px 0 0; padding: 20px;
+    border-top: 1px solid #1f2a38;
+    max-height: 80vh; overflow-y: auto;
+  }
+  .sheet h2 { font-size: 19px; margin-bottom: 4px; }
+  .sheet .sub { font-size: 12px; color: #6b7d90; margin-bottom: 18px; }
+  .input {
+    width: 100%; padding: 13px; background: #0a0e14;
+    border: 1px solid #1f2a38; border-radius: 12px;
+    color: #eaf2f8; font-size: 16px; font-family: inherit;
+    margin-bottom: 10px;
+  }
+  .row2 { display: flex; gap: 8px; }
+
+  /* ---------- TOAST ---------- */
+  .toast {
+    position: fixed; top: 14px; left: 50%; transform: translateX(-50%) translateY(-100px);
+    background: #1f2a38; border: 1px solid #2d3f52;
+    padding: 11px 18px; border-radius: 99px; font-size: 13px;
+    transition: transform .35s; z-index: 100; white-space: nowrap;
+    max-width: 90vw; overflow: hidden; text-overflow: ellipsis;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ========== ROLE SELECT ========== -->
+<div id="screen-role" class="center">
+  <div class="logo">🇳🇬</div>
+  <h1>NAIJA HUSTLE</h1>
+  <div class="tag">From ₦5,000 to everything.</div>
+
+  <button class="role-btn nepo" onclick="pickRole('nepo')">
+    👑 NEPO
+    <small>Born rich. ₦15,000,000 and a company to manage. Don't blow it — or you fall.</small>
+  </button>
+  <button class="role-btn lapo" onclick="pickRole('lapo')">
+    🏃 LAPO
+    <small>Born hungry. ₦5,000, no company, one wish. Grind or stay broke.</small>
+  </button>
+</div>
+
+<!-- ========== WISH SELECT ========== -->
+<div id="screen-wish" class="center hidden">
+  <div class="logo">✨</div>
+  <h1>Make Your Wish</h1>
+  <div class="tag">Choose what you're hustling for. Complete it → earn ₦20,000,000.</div>
+
+  <button class="wish-btn" onclick="pickWish('billionaire')">
+    💰 Become a Billionaire
+    <small>Bank balance reaches ₦1,000,000,000</small>
+  </button>
+  <button class="wish-btn" onclick="pickWish('mansion')">
+    🏠 Build a Mansion
+    <small>Own and complete a high-tier home</small>
+  </button>
+  <button class="wish-btn" onclick="pickWish('popular')">
+    ⭐ Become Popular
+    <small>Reach maximum reputation on your server</small>
+  </button>
+  <button class="wish-btn" onclick="pickWish('family')">
+    👨‍👩‍👧 Lift Your Family
+    <small>Raise your family out of poverty</small>
+  </button>
+</div>
+
+<!-- ========== MAIN GAME ========== -->
+<div id="screen-game" class="hidden">
+
+  <div class="hud-top">
+    <div>
+      <div class="clock" id="clock">--:--</div>
+      <div class="date" id="date">Loading…</div>
+    </div>
+    <div class="online" id="roleBadge">—</div>
+  </div>
+
+  <div class="money-row">
+    <div class="money-box wallet">
+      <span>WALLET · LOSABLE</span>
+      <b id="wallet">₦0</b>
+    </div>
+    <div class="money-box bank">
+      <span>BANK · SAFE</span>
+      <b id="bank">₦0</b>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">NEEDS</div>
+    <div id="bars"></div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">YOUR HUSTLE</div>
+    <div id="goalInfo" style="font-size:13px;line-height:1.6;color:#b8c7d4;"></div>
+  </div>
+
+  <div style="height: 70px"></div>
+</div>
+
+<!-- ========== BOTTOM NAV ========== -->
+<div class="nav hidden" id="nav">
+  <div class="nav-item active"><span class="ico">🏠</span>Home</div>
+  <div class="nav-item" onclick="openBank()"><span class="ico">🏦</span>Bank</div>
+  <div class="nav-item" onclick="toast('Coming in Phase 1')"><span class="ico">🗺️</span>Map</div>
+  <div class="nav-item" onclick="toast('Coming in Phase 1')"><span class="ico">📱</span>Phone</div>
+</div>
+
+<!-- ========== TOAST ========== -->
+<div id="toast" class="toast"></div>
+
+<script>
+/* ============================================================
+   NAIJA HUSTLE — PHASE 0
+   Core loop: real clock · needs decay · roles · wishes · bank
+   ============================================================ */
+
+const SAVE_KEY = "naijahustle_save_v1";
+
+const NEEDS = ["hunger","energy","fun","social","hygiene","bladder"];
+const DECAY = { hunger:.05, energy:.03, fun:.04, social:.02, hygiene:.02, bladder:.04 };
+const COLORS = {
+  hunger:"#f87171", energy:"#fbbf24", fun:"#a78bfa",
+  social:"#60a5fa", hygiene:"#34d399", bladder:"#22d3ee"
+};
+const WISH_LABELS = {
+  billionaire:"Become a Billionaire",
+  mansion:"Build a Mansion",
+  popular:"Become Popular",
+  family:"Lift Your Family"
+};
+
+let state = null;
+let lastTick = Date.now();
+let faintLock = false;
+
+/* ---------- STORAGE ---------- */
+function save() {
+  try { localStorage.setItem(SAVE_KEY, JSON.stringify(state)); } catch(e) {}
+}
+function loadSave() {
+  try {
+    const raw = localStorage.getItem(SAVE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch(e) { return null; }
+}
+
+/* ---------- START ---------- */
+function pickRole(role) {
+  if (role === "lapo") {
+    // Lapo picks a wish before entering
+    show("screen-wish");
+    window._pendingRole = "lapo";
+  } else {
+    createGame("nepo", null);
+  }
+}
+
+function pickWish(wish) {
+  createGame("lapo", wish);
+}
+
+function createGame(role, wish) {
+  state = {
+    role,
+    wish: wish,                             // null for Nepo
+    wallet: role === "nepo" ? 15000000 : 5000,
+    bank: 0,
+    needs: { hunger:100, energy:100, fun:100, social:100, hygiene:100, bladder:100 },
+    createdAt: Date.now()
+  };
+  save();
+  enterGame();
+}
+
+/* ---------- SCREENS ---------- */
+function show(id) {
+  ["screen-role","screen-wish","screen-game"].forEach(s => {
+    document.getElementById(s).classList.add("hidden");
+  });
+  document.getElementById(id).classList.remove("hidden");
+  document.getElementById("nav").classList.toggle("hidden", id !== "screen-game");
+}
+
+function enterGame() {
+  show("screen-game");
+  lastTick = Date.now();
+  renderAll();
+}
+
+/* ---------- CLOCK ---------- */
+function updateClock() {
+  const now = new Date();
+  document.getElementById("clock").textContent =
+    now.toLocaleTimeString("en-NG", { hour:"2-digit", minute:"2-digit" });
+  document.getElementById("date").textContent =
+    now.toLocaleDateString("en-NG", { weekday:"short", day:"numeric", month:"short", year:"numeric" });
+}
+
+/* ---------- TICK ---------- */
+function tick() {
+  if (!state || document.getElementById("screen-game").classList.contains("hidden")) return;
+
+  const now = Date.now();
+  let dt = (now - lastTick) / 1000;
+  lastTick = now;
+
+  // cap offline decay so returning players aren't destroyed (Phase 0 safety)
+  if (dt > 60) dt = 60;
+
+  for (const n of NEEDS) {
+    state.needs[n] = Math.max(0, state.needs[n] - DECAY[n] * dt);
+  }
+
+  if (state.needs.energy <= 0) faint();
+
+  renderBars();
+  renderMoney();
+  save();
+}
+
+/* ---------- FAINT ---------- */
+function faint() {
+  if (faintLock) return;
+  faintLock = true;
+
+  const lost = Math.floor(state.wallet * 0.1);
+  state.wallet -= lost;
+  state.needs.energy = 35;
+  state.needs.health = 100;
+
+  toast(`😵 You fainted! Lost ₦${lost.toLocaleString()} to pickpockets.`);
+
+  setTimeout(() => { faintLock = false; }, 4000);
+}
+
+/* ---------- RENDER ---------- */
+function renderAll() {
+  renderMoney();
+  renderBars();
+  renderRole();
+  renderGoal();
+  updateClock();
+}
+
+function renderMoney() {
+  document.getElementById("wallet").textContent = "₦" + Math.floor(state.wallet).toLocaleString();
+  document.getElementById("bank").textContent   = "₦" + Math.floor(state.bank).toLocaleString();
+}
+
+function renderBars() {
+  const wrap = document.getElementById("bars");
+  wrap.innerHTML = "";
+  for (const n of NEEDS) {
+    const v = state.needs[n];
+    wrap.innerHTML += `
+      <div class="bar-row">
+        <div class="bar-label"><span>${n.toUpperCase()}</span><span>${Math.round(v)}%</span></div>
+        <div class="bar-bg"><div class="bar-fill" style="width:${v}%;background:${COLORS[n]}"></div></div>
+      </div>`;
+  }
+}
+
+function renderRole() {
+  const b = document.getElementById("roleBadge");
+  if (state.role === "nepo") {
+    b.textContent = "👑 NEPO";
+    b.style.background = "#1e3a8a";
+    b.style.color = "#93c5fd";
+  } else {
+    b.textContent = "🏃 LAPO";
+    b.style.background = "#166534";
+    b.style.color = "#4ade80";
+  }
+}
+
+function renderGoal() {
+  const el = document.getElementById("goalInfo");
+  if (state.role === "nepo") {
+    el.innerHTML = `👑 <b>Manage your company.</b><br>
+      Fall to Lapo if you mismanage it and burn your savings.<br>
+      <span style="color:#6b7d90">Company systems arrive in Phase 1.</span>`;
+  } else {
+    el.innerHTML = `✨ <b>Wish:</b> ${WISH_LABELS[state.wish] || "—"}<br>
+      Complete it → earn ₦20,000,000 and become Nepo.<br>
+      <span style="color:#6b7d90">Wish tracking arrives in Phase 1.</span>`;
+  }
+}
+
+/* ---------- BANK ---------- */
+function openBank() {
+  const overlay = document.createElement("div");
+  overlay.className = "overlay";
+  overlay.id = "bankOverlay";
+  overlay.innerHTML = `
+    <div class="sheet">
+      <h2>🏦 Bank</h2>
+      <div class="sub">Money in the bank is safe from fainting. Money in your wallet is not.</div>
+      <div class="input" style="display:flex;justify-content:space-between;background:#0a0e14">
+        <span style="color:#6b7d90;font-size:12px">WALLET</span>
+        <b style="color:#fbbf24">₦${Math.floor(state.wallet).toLocaleString()}</b>
+      </div>
+      <div class="input" style="display:flex;justify-content:space-between;background:#0a0e14">
+        <span style="color:#6b7d90;font-size:12px">BANK</span>
+        <b style="color:#4ade80">₦${Math.floor(state.bank).toLocaleString()}</b>
+      </div>
+      <input class="input" id="bankAmt" type="number" inputmode="numeric" placeholder="Amount in ₦">
+      <div class="row2">
+        <button class="btn btn-green" onclick="bankDo('deposit')">Deposit</button>
+        <button class="btn btn-blue" onclick="bankDo('withdraw')">Withdraw</button>
+      </div>
+      <button class="btn btn-dark" onclick="closeBank()">Close</button>
+    </div>`;
+  document.body.appendChild(overlay);
+  overlay.addEventListener("click", e => { if (e.target === overlay) closeBank(); });
+}
+
+function closeBank() {
+  const o = document.getElementById("bankOverlay");
+  if (o) o.remove();
+}
+
+function bankDo(type) {
+  const amtEl = document.getElementById("bankAmt");
+  const amt = Math.floor(Number(amtEl.value));
+  if (!amt || amt <= 0) return toast("Enter an amount");
+
+  if (type === "deposit") {
+    if (amt > state.wallet) return toast("Not enough in wallet");
+    state.wallet -= amt;
+    state.bank += amt;
+    toast(`Deposited ₦${amt.toLocaleString()}`);
+  } else {
+    if (amt > state.bank) return toast("Not enough in bank");
+    state.bank -= amt;
+    state.wallet += amt;
+    toast(`Withdrew ₦${amt.toLocaleString()}`);
+  }
+
+  save();
+  renderMoney();
+  closeBank();
+}
+
+/* ---------- TOAST ---------- */
+let toastTimer;
+function toast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove("show"), 2500);
+}
+
+/* ---------- BOOT ---------- */
+(function boot() {
+  const existing = loadSave();
+  if (existing && existing.role) {
+    state = existing;
+    enterGame();
+  } else {
+    show("screen-role");
+  }
+  updateClock();
+  setInterval(updateClock, 1000);
+  setInterval(tick, 1000);
+})();
+</script>
+</body>
+  </html>
